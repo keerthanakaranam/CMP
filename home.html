@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <script>
+       let email=/[a-zA-Z]/;
+       let string="129a4";
+       let ans = email.test(string);
+       console.log(ans);
+
+        function submitform(){
+            // WARNING: For POST requests, body is set to null by browsers.
+            let First_Name = document.getElementById("First_name").value
+            let Last_Name= document.getElementById("Last_name").value
+            let email = document.getElementById("email").value
+            let Secondary_email = document.getElementById("Secondary_email").value
+            let number = document.getElementById("number").value
+            let Department = document.getElementById("Department").value
+let data = JSON.stringify({
+  "request": {
+    "data": [
+      {
+        
+        "First_Name":First_Name,
+        "Last_Name": Last_Name,
+        "Email": email,
+        "Secondary email": Secondary_email,
+        "Number": number,
+        "Department": Department
+      }
+    ]
+  }
+});
+
+let xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+xhr.addEventListener("readystatechange", function() {
+  if(this.readyState === 4) {
+    if (this.status === 201) {
+      console.log(this.responseText);
+      alert("Record successfully created!");
+    } else {
+      console.log(this.response)
+      alert("Record not created")
+    }
+  }
+
+});
+xhr.open("POST", "/server/crm_function/");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.send(data);
+        }
+    </script>
+    <!-- Montserrat Font -->
+    <link
+href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;50
+0;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <div class="grid-container">
+      <!-- Header -->
+      <header class="header">
+        <div class="menu-icon" onclick="openSidebar()">
+          <span class="material-icons-outlined">menu</span>
+        </div>
+        <div class="header-left">
+          <span class="material-icons-outlined">search</span>
+        </div>
+        <div class="header-right">
+          <span class="material-icons-outlined">notifications</span>
+          <span class="material-icons-outlined">email</span>
+          <span class="material-icons-outlined">account_circle</span>
+        </div>
+      </header>
+      <!-- End Header -->
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">
+            <span class="material-icons-outlined">linked_services</span>SERVICES
+          </div>
+          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+        </div>
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item"><a href="#" target="_blank">
+              <span class="material-icons-outlined">dashboard</span> ZOHO CRM </a>
+          </li>
+          <div class="desk">
+          <li class="sidebar-list-item">
+            <a href="#" target="_self">
+             <span class="material-icons-outlined">inventory_2</span> ZOHO DESK
+            </a>
+          </li>
+        </div>
+          <li class="sidebar-list-item">
+            <a href="https://survey.zohopublic.com/zs/rpD74z"><span class="material-iconsoutlined"></span> ZOHO SURVEY
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#">
+             <span class="material-icons-outlined">meeting_room</span> ZOHO BOOKINGS
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_self">
+          <span class="material-icons-outlined">poll</span>REPORTS
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_self">
+             <span class="material-icons-outlined">settings</span> SETTINGS
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <!-- End Sidebar -->
+      <!--sidebar-->
+      <!-- Main -->
+      <main class="main-container" >
+        <form id="test" >
+          <h1>Fill the form </h1>
+            <label for="name">First Name:</label>
+            <input type="text" id="First_name"><br>
+            <label for="text">Last Name</label>
+            <input type="text" id="Last_name" required><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email"><br>
+            <label for="email">Secondary Email:</label>
+            <input type="email" id="Secondary_email"><br>
+            <label for="number">Phone:</label>
+            <!--phone number is validated has to take numbers i -->
+            <input type="tel" id="number" pattern="[0-9]+" title="Please enter only numbers"><br>
+            <label for="Departmnet">Department</label>
+            <input type="text" id="Department"><br>
+            <input type="submit" onclick="submitform();return false;">
+        </form>
+      </main>
+      <!-- End Main -->
+    </div>
+    <!-- Scripts -->
+    <!-- ApexCharts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
+    <!-- Custom JS -->
+    <script src="main.js"></script>
+      <script type="text/javascript" id="zsiqchat">var $zoho=$zoho || {};$zoho.salesiq =
+$zoho.salesiq || {widgetcode:
+"siq638999426f1e9974683a165ab1f884946a342a55a2355c2c98489ba52cb0dbb5",
+values:{},ready:function(){}};var
+d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer
+=true;s.src="https://salesiq.zohopublic.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);</script>
+  </body>
+</html>
